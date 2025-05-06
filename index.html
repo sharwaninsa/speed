@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Navigator</title>
+</head>
+<body>
+    <button>Get speed</button>
+    <p id="latLong"></p>
+    <script>
+        let watchId;
+
+        const speed_calc = function() {
+            if (watchId) {
+                navigator.geolocation.clearWatch(watchId);
+            }
+
+            // Start watching the position
+            watchId = navigator.geolocation.watchPosition(position => {
+                const speed = position.coords.speed; // Speed in meters/second
+                document.querySelector("#latLong").innerText = speed ? speed.toFixed(2) + ' m/s' : 'Speed not available';
+                alert(speed ? speed.toFixed(2) + ' m/s' : 'Speed not available');
+            }, error => {
+                console.error(error);
+                alert('Error getting location: ' + error.message);
+            }, {
+                enableHighAccuracy: true // Request high accuracy if available
+            });
+        }
+
+        document.querySelector('button').addEventListener('click', (e) => {
+            e.preventDefault();
+            speed_calc();
+        });
+    </script>
+</body>
+
+</html>
