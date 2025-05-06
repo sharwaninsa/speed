@@ -20,10 +20,10 @@
             watchId = navigator.geolocation.watchPosition(position => {
                 const speed = position.coords.speed; // Speed in meters/second
                 document.querySelector("#latLong").innerText = speed ? speed.toFixed(2) + ' m/s' : 'Speed not available';
-                alert(speed ? speed.toFixed(2) + ' m/s' : 'Speed not available');
+                //alert(speed ? speed.toFixed(2) + ' m/s' : 'Speed not available');
             }, error => {
                 console.error(error);
-                alert('Error getting location: ' + error.message);
+                //alert('Error getting location: ' + error.message);
             }, {
                 enableHighAccuracy: true // Request high accuracy if available
             });
