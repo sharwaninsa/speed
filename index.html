@@ -18,8 +18,8 @@
 
             // Start watching the position
             watchId = navigator.geolocation.watchPosition(position => {
-                const speed = position.coords.speed; // Speed in meters/second
-                document.querySelector("#latLong").innerText = speed ? speed.toFixed(2) + ' m/s' : 'Speed not available';
+                const speed = position.coords.speed*1000; // Speed in meters/second
+                document.querySelector("#latLong").innerText = speed ? speed.toFixed(2) + ' km/h' : 'Speed not available';
                 //alert(speed ? speed.toFixed(2) + ' m/s' : 'Speed not available');
             }, error => {
                 console.error(error);
